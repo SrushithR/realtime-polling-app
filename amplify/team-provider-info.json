@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-realtimepoll-dev-101535-authRole",
+            "UnauthRoleArn": "arn:aws:iam::752027857462:role/amplify-realtimepoll-dev-101535-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::752027857462:role/amplify-realtimepoll-dev-101535-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-realtimepoll-dev-101535-deployment",
+            "UnauthRoleName": "amplify-realtimepoll-dev-101535-unauthRole",
+            "StackName": "amplify-realtimepoll-dev-101535",
+            "StackId": "arn:aws:cloudformation:us-east-1:752027857462:stack/amplify-realtimepoll-dev-101535/8a19e1a0-c8b1-11ea-8e29-0e0494eb61ff",
+            "AmplifyAppId": "dqwhw0i1daju1"
+        },
+        "categories": {
+            "auth": {
+                "realtimepolldff777a6": {}
+            }
+        }
+    }
+}
