@@ -1,0 +1,22 @@
+site_name: Simple Real Time Polling App
+theme:
+  name: material
+  palette:
+    primary: orange
+    scheme: preference
+
+markdown_extensions:
+  - admonition
+
+nav:
+  - Home: index.md
+  - Resources: resources.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/SrushithR
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/SrushithR
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/srushith/

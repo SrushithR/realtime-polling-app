@@ -1,0 +1,1511 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.4.0">
+    
+    
+      
+        <title>Simple Real Time Polling App</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.fe0cca5b.min.css">
+      
+        <link rel="stylesheet" href="assets/stylesheets/palette.a46bcfb3.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ffa726">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="orange" data-md-color-accent="">
+  
+    
+      <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#simple-real-time-polling-application" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="." title="Simple Real Time Polling App" class="md-header-nav__button md-logo" aria-label="Simple Real Time Polling App">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Simple Real Time Polling App
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Simple Real Time Polling App" class="md-nav__button md-logo" aria-label="Simple Real Time Polling App">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Simple Real Time Polling App
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Home
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="." title="Home" class="md-nav__link md-nav__link--active">
+      Home
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#simple-real-time-polling-application" class="md-nav__link">
+    Simple Real time Polling Application
+  </a>
+  
+    <nav class="md-nav" aria-label="Simple Real time Polling Application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-of-services-consumed" class="md-nav__link">
+    List of services consumed
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites-for-installation" class="md-nav__link">
+    Pre-requisites for installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-amplify-cli" class="md-nav__link">
+    Configuring Amplify CLI
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initialising-a-new-project" class="md-nav__link">
+    Initialising A New Project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-a-graphql-api" class="md-nav__link">
+    Adding a GraphQL API
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-queries-mutations-and-subscriptions" class="md-nav__link">
+    Understanding Queries, Mutations and Subscriptions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-auto-generated-resolvers" class="md-nav__link">
+    Understanding auto generated resolvers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-new-poll" class="md-nav__link">
+    Creating a new Poll
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-candidates-options-to-the-poll" class="md-nav__link">
+    Adding Candidates (Options) to the Poll
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-poll-and-candidates" class="md-nav__link">
+    Creating Poll and Candidates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upvoting" class="md-nav__link">
+    Upvoting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-mocking-and-testing" class="md-nav__link">
+    Local mocking and testing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-patterns-definition-in-dynamodb" class="md-nav__link">
+    Access patterns definition in DynamoDB
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-subscriptions-for-real-time-updates" class="md-nav__link">
+    Adding subscriptions for real time updates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-graphql-subscriptions" class="md-nav__link">
+    Testing GraphQL Subscriptions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integrating-the-graphql-api-with-the-ui-code" class="md-nav__link">
+    Integrating the GraphQL API with the UI code
+  </a>
+  
+    <nav class="md-nav" aria-label="Integrating the GraphQL API with the UI code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-new-poll" class="md-nav__link">
+    Create a new poll
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#polls-with-image-candidates" class="md-nav__link">
+    Polls with image candidates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hosting-your-application" class="md-nav__link">
+    Hosting your application
+  </a>
+  
+    <nav class="md-nav" aria-label="Hosting your application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-app-hosting" class="md-nav__link">
+    Add app hosting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-redirects" class="md-nav__link">
+    Adding redirects
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#destroy-the-app" class="md-nav__link">
+    Destroy the App
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="resources/" title="Resources" class="md-nav__link">
+      Resources
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#simple-real-time-polling-application" class="md-nav__link">
+    Simple Real time Polling Application
+  </a>
+  
+    <nav class="md-nav" aria-label="Simple Real time Polling Application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-of-services-consumed" class="md-nav__link">
+    List of services consumed
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites-for-installation" class="md-nav__link">
+    Pre-requisites for installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-amplify-cli" class="md-nav__link">
+    Configuring Amplify CLI
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initialising-a-new-project" class="md-nav__link">
+    Initialising A New Project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-a-graphql-api" class="md-nav__link">
+    Adding a GraphQL API
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-queries-mutations-and-subscriptions" class="md-nav__link">
+    Understanding Queries, Mutations and Subscriptions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-auto-generated-resolvers" class="md-nav__link">
+    Understanding auto generated resolvers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-new-poll" class="md-nav__link">
+    Creating a new Poll
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-candidates-options-to-the-poll" class="md-nav__link">
+    Adding Candidates (Options) to the Poll
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-poll-and-candidates" class="md-nav__link">
+    Creating Poll and Candidates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upvoting" class="md-nav__link">
+    Upvoting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-mocking-and-testing" class="md-nav__link">
+    Local mocking and testing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-patterns-definition-in-dynamodb" class="md-nav__link">
+    Access patterns definition in DynamoDB
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-subscriptions-for-real-time-updates" class="md-nav__link">
+    Adding subscriptions for real time updates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-graphql-subscriptions" class="md-nav__link">
+    Testing GraphQL Subscriptions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integrating-the-graphql-api-with-the-ui-code" class="md-nav__link">
+    Integrating the GraphQL API with the UI code
+  </a>
+  
+    <nav class="md-nav" aria-label="Integrating the GraphQL API with the UI code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-new-poll" class="md-nav__link">
+    Create a new poll
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#polls-with-image-candidates" class="md-nav__link">
+    Polls with image candidates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hosting-your-application" class="md-nav__link">
+    Hosting your application
+  </a>
+  
+    <nav class="md-nav" aria-label="Hosting your application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-app-hosting" class="md-nav__link">
+    Add app hosting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-redirects" class="md-nav__link">
+    Adding redirects
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#destroy-the-app" class="md-nav__link">
+    Destroy the App
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                  <h1>Home</h1>
+                
+                <h2 id="simple-real-time-polling-application">Simple Real time Polling Application</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This application was built by <a href="https://twitter.com/dabit3">Nader Dabit</a>. Thank you for your amazing contribution to the Serverless and Amplify community!</p>
+</div>
+<p>In this workshop, we will be building a simple real time polling application using GraphQL APIs. By the end of the workshop, you will be able to create polls, upvote candidates and share the poll link to see the power of GraphQL subscriptions in action</p>
+<p><img src="https://user-images.githubusercontent.com/23396903/87696333-47240000-c7ae-11ea-8ac8-fa543d145bce.png"></p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>This workshop is built on the assumption that you have basic understand of working with AWS and GraphQL   </p>
+</div>
+<h3 id="list-of-services-consumed">List of services consumed</h3>
+<ol>
+<li><a href="https://aws.amazon.com/amplify/">AWS Amplify</a> - a set of tools and services that enables mobile and front-end web developers to build secure, scalable full stack applications </li>
+<li><a href="https://aws.amazon.com/appsync/">AWS AppSync</a> - a managed GraphQL service on AWS </li>
+<li><a href="https://aws.amazon.com/dynamodb/">Amazon DynamoDB</a> - a  key-value and document database that delivers single-digit millisecond performance at any scale</li>
+</ol>
+<h2 id="pre-requisites-for-installation">Pre-requisites for installation</h2>
+<ul>
+<li>Install <a href="https://nodejs.org/en/download/">Node.js</a> and <a href="https://www.npmjs.com/get-npm">NPM</a></li>
+<li><a href="https://portal.aws.amazon.com/billing/signup#/start">Create AWS Account</a> if you already don't have one. This workshop utilises most of the resources that fall under <a href="https://aws.amazon.com/free/">AWS free tier</a></li>
+<li>Install <a href="https://java.com/en/download/help/download_options.xml">Java</a>. This will be used for local testing of AppSync APIs</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>Install the Amplify CLI using the following command:</p>
+<pre><code>npm install -g @aws-amplify/cli
+</code></pre>
+
+<h3 id="configuring-amplify-cli">Configuring Amplify CLI</h3>
+<p>To configure Amplify CLI on your machine, run the following command:</p>
+<pre><code>amplify configure
+</code></pre>
+
+<p>On running the above command, you will be asked to login to your AWS console. On logging in, Amplify CLI will create an IAM user</p>
+<pre><code>Specify the AWS Region
+? region:  # Your preferred region
+Specify the username of the new IAM user:
+? user name:  # User name for Amplify IAM user
+Complete the user creation using the AWS console
+</code></pre>
+
+<p>Create a user with AdministratorAccess to your account to provision AWS resources for you like AppSync, Cognito etc. Once the user is created, Amplify CLI will ask you to provide the accessKeyId and the secretAccessKey to connect Amplify CLI with your newly created IAM user.</p>
+<pre><code>Enter the access key of the newly created user:
+? accessKeyId:  # YOUR_ACCESS_KEY_ID
+? secretAccessKey:  # YOUR_SECRET_ACCESS_KEY
+This would update/create the AWS Profile in your local machine
+? Profile Name:  # (default)
+
+Successfully set up the new user.
+</code></pre>
+
+<h2 id="initialising-a-new-project">Initialising A New Project</h2>
+<pre><code>amplify init
+</code></pre>
+
+<pre><code>Enter a name for the project: __realtimepoll__
+Enter a name for the environment: __dev__
+Choose your default editor: __Visual Studio Code (or your default editor)__   
+Please choose the type of app that you're building __javascript__   
+What javascript framework are you using __react__   
+Source Directory Path: __src__   
+Distribution Directory Path: __build__   
+Build Command: __npm run-script build__   
+Start Command: __npm run-script start__   
+Do you want to use an AWS profile? __Y__
+Please choose the profile you want to use: __amplify__
+</code></pre>
+
+<p>Now, the AWS Amplify CLI has iniatilized a new project &amp; you will see a new folder: <strong>amplify</strong> &amp; a new file called <code>aws-exports.js</code> in the <strong>src</strong> directory. These files hold the project configuration.</p>
+<p>To view the status of the amplify project at any time, you can run the Amplify <code>status</code> command:</p>
+<pre><code>amplify status
+</code></pre>
+
+<h2 id="adding-a-graphql-api">Adding a GraphQL API</h2>
+<pre><code class="sh">amplify add api
+
+? Please select from one of the above mentioned services: GraphQL
+? Provide API name: ConferenceAPI
+? Choose an authorization type for the API: API key
+? Enter a description for the API key: &lt;some description&gt;
+? After how many days from now the API key should expire (1-365): 365
+? Do you want to configure advanced settings for the GraphQL API: No
+? Do you have an annotated GraphQL schema? N 
+? Do you want a guided schema creation? Y
+? What best describes your project: Single object with fields
+? Do you want to edit the schema now? (Y/n) Y
+</code></pre>
+
+<p>When prompted, update the schema in the <code>amplify/backend/api/&lt;api-name&gt;/schema.graphql</code> to the following:   </p>
+<pre><code class="graphql">type Poll @model {
+  id: ID!
+  name: String!
+  type: PollType!
+  itemType: String
+  createdAt: String
+}
+
+enum PollType {
+  image
+  text
+}
+</code></pre>
+
+<p>The GraphQL schema will create a GraphQL type <code>Poll</code> with the following fields:</p>
+<ul>
+<li>id - a non-nullable field to store the id of the poll</li>
+<li>name - a non-nullable name of the poll</li>
+<li>type - type of poll options (candidates), resolving to an enum with values - <code>image</code> and <code>text</code></li>
+<li>itemType - type of poll</li>
+<li>createdAt - the timestamp at which the poll was created</li>
+</ul>
+<p>Run <code>amplify status</code> to check the status of the application. This will now reflect the addition of the API</p>
+<p>Run <code>amplify push</code> to deploy the resources (API and DynamoDB tables) to the AWS cloud. Select appropriate options as shown below:</p>
+<pre><code>? Are you sure you want to continue? Yes
+? Do you want to generate code for your newly created GraphQL API Yes
+? Do you want to generate code for your newly created GraphQL API Yes
+? Choose the code generation language target javascript
+? Enter the file name pattern of graphql queries, mutations and subscriptions src/graphql/**/*.js
+? Do you want to generate/update all possible GraphQL operations - queries, mutations and subscriptions Yes
+? Enter maximum statement depth [increase from default if your schema is deeply nested] 2
+</code></pre>
+
+<p>The above command will provision the following resources on the AWS cloud:</p>
+<ol>
+<li>DynamoDB table - <code>PollTable</code> - a table to store all the details about the polls created as a part of the application</li>
+<li>AppSync API - a GraphQL API with pre-generated queries, mutations and subscriptions based on the graphql schema designed as mentioned above</li>
+</ol>
+<p>The above command will return the GraphQL endpoint and the GraphQL API KEY as the response.</p>
+<p>Run <code>amplify console</code> to view the application in the AWS console</p>
+<h2 id="understanding-queries-mutations-and-subscriptions">Understanding Queries, Mutations and Subscriptions</h2>
+<p>Amplify will auto generate queries, mutations and subscriptions for all the <code>@model</code> in the schema and can be viewed in the <code>/amplify/#current-cloud-backend/&lt;api-name&gt;/build/graphql.schema</code></p>
+<pre><code class="graphql">type Poll {
+  id: ID!
+  name: String!
+  type: PollType!
+  itemType: String
+  createdAt: String
+  updatedAt: AWSDateTime!
+}
+
+enum PollType {
+  image
+  text
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelPollConnection {
+  items: [Poll]
+  nextToken: String
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+input ModelPollTypeInput {
+  eq: PollType
+  ne: PollType
+}
+
+input ModelPollFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  type: ModelPollTypeInput
+  itemType: ModelStringInput
+  createdAt: ModelStringInput
+  and: [ModelPollFilterInput]
+  or: [ModelPollFilterInput]
+  not: ModelPollFilterInput
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+type Query {
+  getPoll(id: ID!): Poll
+  listPolls(filter: ModelPollFilterInput, limit: Int, nextToken: String): ModelPollConnection
+}
+
+input CreatePollInput {
+  id: ID
+  name: String!
+  type: PollType!
+  itemType: String
+  createdAt: String
+}
+
+input UpdatePollInput {
+  id: ID!
+  name: String
+  type: PollType
+  itemType: String
+  createdAt: String
+}
+
+input DeletePollInput {
+  id: ID
+}
+
+type Mutation {
+  createPoll(input: CreatePollInput!, condition: ModelPollConditionInput): Poll
+  updatePoll(input: UpdatePollInput!, condition: ModelPollConditionInput): Poll
+  deletePoll(input: DeletePollInput!, condition: ModelPollConditionInput): Poll
+}
+
+input ModelPollConditionInput {
+  name: ModelStringInput
+  type: ModelPollTypeInput
+  itemType: ModelStringInput
+  createdAt: ModelStringInput
+  and: [ModelPollConditionInput]
+  or: [ModelPollConditionInput]
+  not: ModelPollConditionInput
+}
+
+type Subscription {
+  onCreatePoll: Poll @aws_subscribe(mutations: [&quot;createPoll&quot;])
+  onUpdatePoll: Poll @aws_subscribe(mutations: [&quot;updatePoll&quot;])
+  onDeletePoll: Poll @aws_subscribe(mutations: [&quot;deletePoll&quot;])
+}
+</code></pre>
+
+<p>Amplify automatically enables pagination, filtering capability for the get and list queries. You can understand more about the resolver mapping template utility reference (<code>$util</code>) [here] (https://docs.aws.amazon.com/appsync/latest/devguide/resolver-util-reference.html) </p>
+<h2 id="understanding-auto-generated-resolvers">Understanding auto generated resolvers</h2>
+<p>Amplify also auto generates resolvers for all of the queries and mutations, and can be seen under the <code>/amplify/#current-cloud-backend/&lt;api-name&gt;/build/resolvers/</code> folder </p>
+<h2 id="creating-a-new-poll">Creating a new Poll</h2>
+<p>Run <code>amplify api console</code> to open the AppSync's <code>Queries</code> section in the AWS console. This can be used to run queries, mutations and subscriptions.</p>
+<p>Execute the following query to get a list of all the polls:</p>
+<pre><code class="graphql">query GetAllPolls {
+  listPolls {
+    items {
+      id
+      name
+      type
+    }
+  }
+}
+</code></pre>
+
+<p>The above query will get the list of polls, but since there are no polls yet created, the response would be:</p>
+<pre><code class="graphql">{
+  &quot;data&quot;: {
+    &quot;listPolls&quot;: {
+      &quot;items&quot;: []
+    }
+  }
+}
+</code></pre>
+
+<p>Run the following <code>mutation</code> to create your first poll</p>
+<pre><code class="graphql">mutation CreatePoll {
+  createPoll(input: {
+    id: &quot;first-poll&quot;
+    name: &quot;first-poll&quot;
+    type: text
+    itemType: &quot;Poll&quot;
+  }) {
+    id
+    name
+    type
+  }
+}
+</code></pre>
+
+<p>Running the first <code>GetAllPolls</code> will now return the just created poll:</p>
+<pre><code class="graphql">{
+  &quot;data&quot;: {
+    &quot;listPolls&quot;: {
+      &quot;items&quot;: [
+        {
+          &quot;id&quot;: &quot;first-poll&quot;,
+          &quot;name&quot;: &quot;first-poll&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;itemType&quot;: &quot;Poll&quot;,
+          &quot;createdAt&quot;: &quot;2020-07-14T19:10:02.732Z&quot;
+        }
+      ]
+    }
+  }
+}
+</code></pre>
+
+<h2 id="adding-candidates-options-to-the-poll">Adding Candidates (Options) to the Poll</h2>
+<p>Now that you have created your first poll, lets add a few candidates (options) to our poll. To do so, you will have to first modify the GraphQL schema in the <code>/backend/api/schema.graphql</code> file</p>
+<pre><code class="graphql">type Poll @model {
+  id: ID!
+  name: String!
+  type: PollType!
+  itemType: String
+  candidates: [Candidate] @connection
+  createdAt: String
+}
+
+enum PollType {
+  image
+  text
+}
+
+type Candidate @model {
+  id: ID!
+  pollCandidatesId: ID
+  image: String
+  name: String
+  upvotes: Int
+}
+</code></pre>
+
+<p>The above schema signifies a one-to-many relationship between polls and candidates. The <code>@connection</code> directive enables you to specify relationships between @model types. Currently, this supports one-to-one, one-to-many, and many-to-one relationships. You may implement many-to-many relationships using two one-to-many connections and a joining <code>@model</code> type.</p>
+<p>The above schema will create another DynamoDB table - <code>CandidateTable</code> with the following fields:</p>
+<ul>
+<li>id - candidate id</li>
+<li>pollCandidatesId - the poll id to which the candidate belongs to</li>
+<li>image - the image details if the poll is of type <code>image</code></li>
+<li>name - name of the candidate if the poll is of type <code>text</code></li>
+<li>upvotes - the number of upvotes for the particular candidate</li>
+</ul>
+<p>Run <code>amplify api gql-compile</code> to make sure the schema details are added correctly and it compiles successfully</p>
+<h2 id="creating-poll-and-candidates">Creating Poll and Candidates</h2>
+<p>Run <code>amplify status</code> to see that the API is now under <code>Update</code> status</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can compile the GraphQL schema for any errors using the <code>amplify gql compile</code> command and view the compiled schema ouptput in <code>backend/api/&lt;api-name&gt;/build/schema.graphql</code> file</p>
+</div>
+<p>Run <code>amplify push</code> to push the latest changes to AWS cloud and select the appropriate options as below:</p>
+<pre><code>? Are you sure you want to continue? Yes
+? Do you want to update code for your updated GraphQL API Yes
+? Do you want to generate GraphQL statements (queries, mutations and subscription) based on your schema types?
+This will overwrite your current graphql queries, mutations and subscriptions Yes
+</code></pre>
+
+<p>Once the command is successful, run <code>amplify console</code> to see the latest changes on the console. Navigate the DynamoDB service to see the newly created <code>CandidateTable</code> as well.</p>
+<p>The above command will also generate the necessary resolvers for queries and mutations corresponding to the <code>Candidate</code> type</p>
+<p>Get the poll <code>id</code> of the poll that was created earlier using the following query:</p>
+<pre><code class="graphql">query GetAllPolls {
+  listPolls {
+    items {
+      id
+    }
+  }
+}
+</code></pre>
+
+<p>use the above returned id in the <code>createCandidate</code> mutation and initialise the <code>upvotes</code> to <code>0</code>:</p>
+<pre><code class="graphql">mutation CreateCandidate {
+  createCandidate(input: {
+    pollCandidatesId: &quot;first-poll&quot;
+    name: &quot;first option&quot;
+    upvotes: 0
+  }) {
+    name
+    upvotes
+  }
+}
+</code></pre>
+
+<p>Run the following <code>getPoll</code> query to get the poll details along with its candidates:</p>
+<pre><code class="graphql">query GetPoll {
+  getPoll(id: &quot;first-poll&quot;) {
+    name
+    type
+    candidates {
+      items {
+        id
+        name
+        upvotes
+      }
+    }
+  }
+}
+</code></pre>
+
+<p>The above query should return the following response:</p>
+<pre><code class="JSON">{
+  &quot;data&quot;: {
+    &quot;getPoll&quot;: {
+      &quot;name&quot;: &quot;first-poll&quot;,
+      &quot;type&quot;: &quot;text&quot;,
+      &quot;candidates&quot;: {
+        &quot;items&quot;: [
+          {
+            &quot;id&quot;: &quot;70c5de2c-1b99-4cae-82c5-a2534212a87d&quot;,
+            &quot;name&quot;: &quot;first option&quot;,
+            &quot;upvotes&quot;: 0
+          }
+        ]
+      }
+    }
+  }
+}
+</code></pre>
+
+<h2 id="upvoting">Upvoting</h2>
+<ol>
+<li>To upvote a candidate for a poll, you will need to create a new mutation <code>upVote</code> and update the <code>schema.graphql</code> file as follows:</li>
+</ol>
+<pre><code class="graphql">type Poll @model {
+  id: ID!
+  name: String!
+  type: PollType!
+  itemType: String
+  candidates: [Candidate] @connection
+  createdAt: String
+}
+
+enum PollType {
+  image
+  text
+}
+
+type Candidate @model {
+  id: ID!
+  pollCandidatesId: ID
+  image: String
+  name: String
+  upvotes: Int
+}
+
+type VoteType {
+    id: ID
+  clientId: ID
+}
+
+type Mutation {
+  upVote(id: ID, clientId: ID): VoteType
+}
+</code></pre>
+
+<ol>
+<li>Create a custom request resolver <code>Mutation.upVote.req.vtl</code> in the <code>/backend/api/&lt;api-name&gt;/resolvers</code> folder with the following definition:</li>
+</ol>
+<pre><code>{
+    &quot;version&quot;: &quot;2018-05-29&quot;,
+    &quot;operation&quot;: &quot;UpdateItem&quot;,
+    &quot;key&quot; : {
+      &quot;id&quot; : $util.dynamodb.toDynamoDBJson($context.arguments.id)
+    },
+    &quot;update&quot;: {
+      &quot;expression&quot; : &quot;set #upvotes = #upvotes + :updateValue&quot;,
+      &quot;expressionNames&quot; : {
+           &quot;#upvotes&quot; : &quot;upvotes&quot;
+       },
+       &quot;expressionValues&quot; : {
+           &quot;:updateValue&quot; : { &quot;N&quot; : &quot;1&quot; }
+       }
+    }
+}
+</code></pre>
+
+<p>The above resolver will perform an atomic update on the <code>upvotes</code> key in the <code>CandidateTable</code> DynamoDB table. This atomic update allows the DynamoDB table to stay consistent regardless of the number of other operations that are happening</p>
+<ol>
+<li>Create a <code>Mutation.upVote.res.vtl</code> response resolver in the same folder</li>
+</ol>
+<pre><code>$util.quiet($ctx.result.put(&quot;clientId&quot;, &quot;$context.arguments.clientId&quot;))
+$util.toJson($ctx.result)
+</code></pre>
+
+<ol>
+<li>Update the resolver configuration in the <code>/backend/api/stacks/CustomResources.json</code> with the following details under the <code>Resources</code> section by replacing the <code>EmptyResource</code>:</li>
+</ol>
+<pre><code class="json">&quot;UpvoteResolver&quot;: {
+            &quot;Type&quot;: &quot;AWS::AppSync::Resolver&quot;,
+            &quot;Properties&quot;: {
+                &quot;ApiId&quot;: {
+                    &quot;Ref&quot;: &quot;AppSyncApiId&quot;
+                },
+                &quot;DataSourceName&quot;: &quot;CandidateTable&quot;,
+                &quot;TypeName&quot;: &quot;Mutation&quot;,
+                &quot;FieldName&quot;: &quot;upVote&quot;,
+                &quot;RequestMappingTemplateS3Location&quot;: {
+                    &quot;Fn::Sub&quot;: [
+                        &quot;s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Mutation.upVote.req.vtl&quot;,
+                        {
+                            &quot;S3DeploymentBucket&quot;: {
+                                &quot;Ref&quot;: &quot;S3DeploymentBucket&quot;
+                            },
+                            &quot;S3DeploymentRootKey&quot;: {
+                                &quot;Ref&quot;: &quot;S3DeploymentRootKey&quot;
+                            }
+                        }
+                    ]
+                },
+                &quot;ResponseMappingTemplateS3Location&quot;: {
+                    &quot;Fn::Sub&quot;: [
+                        &quot;s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Mutation.upVote.res.vtl&quot;,
+                        {
+                            &quot;S3DeploymentBucket&quot;: {
+                                &quot;Ref&quot;: &quot;S3DeploymentBucket&quot;
+                            },
+                            &quot;S3DeploymentRootKey&quot;: {
+                                &quot;Ref&quot;: &quot;S3DeploymentRootKey&quot;
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+</code></pre>
+
+<p>The <code>customResources.json</code> file is used to define any custom resources that needs to be added to the project</p>
+<h2 id="local-mocking-and-testing">Local mocking and testing</h2>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Java is required on your development workstation to use Local Mocking in Amplify</p>
+</div>
+<p>One of the best features of Amplify is the capability to mock and test the setup locally without any configuration. It creates a mock DynamoDB database which can be used to store the mock and test data. </p>
+<p>To do so, just run the following command:</p>
+<p><code>amplify mock api</code></p>
+<p>This should start an AppSync Mock endpoint on <code>localhost</code> at port number <code>20002</code>. </p>
+<pre><code class="sh">Creating new table PollTable
+Creating new table CandidateTable
+Running GraphQL codegen
+✔ Generated GraphQL operations successfully and saved at src/graphql
+AppSync Mock endpoint is running at http://192.168.1.9:20002
+</code></pre>
+
+<p>Open the endpoint in the browser to use the <a href="https://github.com/graphql/graphiql">GraphiQL</a> Editor</p>
+<p>Test the upVote feature by the following steps:
+1. Create a new poll as mentioned earlier using the <code>createPoll</code> mutation
+2. Create <code>Candidates</code> for the above created poll using the <code>createCandidate</code> mutation
+3. Get the poll details using the following query:</p>
+<pre><code class="graphql">query GetPoll {
+  getPoll(id: &quot;first-poll&quot;) {
+    candidates {
+      items {
+        id
+        name
+        pollCandidatesId
+        upvotes
+      }
+    }
+    name
+  }
+}
+</code></pre>
+
+<p>Notice the nesting of the query from <code>poll</code> to <code>candidates</code></p>
+<ol>
+<li>Up vote for the candidate using the <code>upVote</code> mutation:</li>
+</ol>
+<pre><code class="graphql">mutation UpVote {
+  upVote(id: &quot;688d4bc7-500f-4a68-9f11-4d34af05ca6a&quot;) {
+    id
+  }
+}
+</code></pre>
+
+<p>The above mutation will increase the count of <code>upVote</code> by 1 and the same can be verified by using the <code>GetPoll</code> query mentioned in above</p>
+<h2 id="access-patterns-definition-in-dynamodb">Access patterns definition in DynamoDB</h2>
+<p>Working with DynamoDB requires a bit of forethought. DynamoDB query operations may use at most two attributes to efficiently query data. The first query argument passed to a query (the hash key) must use strict equality and the second attribute (the sort key) may use gt, ge, lt, le, eq, beginsWith, and between.</p>
+<p>Understanding the various access patterns of your application becomes very crucial to design DynamoDB tables. In our current implication, you can query both the <code>Poll</code> and <code>Candidate</code> tables only using their respective ids, if you have query based on the type of the poll - <code>image</code>/<code>text</code>, it won't be possible. To achieve this, we can create a Global Secondary Index (GSI) on the Poll table with the <code>itemType</code> as the partition key (PK) and <code>createdAt</code> as the sort key (SK) - the combination of PK and SK should always be unique.</p>
+<p>To create a GSI to the <code>Poll</code> type, we can modify the exisisting schema using the <code>@key</code> directive as follows:</p>
+<pre><code class="graphql">type Poll @model
+  @key(name: &quot;byItemType&quot;, fields: [&quot;itemType&quot;, &quot;createdAt&quot;], queryField: &quot;itemsByType&quot;)
+  {
+  id: ID!
+  name: String!
+  type: PollType!
+  candidates: [Candidate] @connection
+  itemType: String
+  createdAt: String
+}
+</code></pre>
+
+<p>The <code>@key</code> directive is used to define the indexes for the table. In the above example, we are creating a GSI with <code>itemType</code> as the partition key and <code>createdAt</code> as the sort key. The <code>queryField</code> defines the GraphQL query that will consume this GSI. </p>
+<h2 id="adding-subscriptions-for-real-time-updates">Adding subscriptions for real time updates</h2>
+<p>One of the most sort after features of GraphQL is real time data subscriptions and Amplify makes it so easy to do the same by just adding 3 lines of code to the GraphQL schema:</p>
+<pre><code class="graphql">type Subscription {
+  onUpdateByID(id: ID!): VoteType
+  @aws_subscribe(mutations: [&quot;upVote&quot;])
+}
+</code></pre>
+
+<p>The above will add a new subscription that gets triggered when the <code>upVote</code> mutation publishes a result. The client is subscribed to a particular poll and will get notifications of any changes because of the <code>upVote</code> mutation</p>
+<p>Push the changes using the <code>amplify push</code> command</p>
+<h2 id="testing-graphql-subscriptions">Testing GraphQL Subscriptions</h2>
+<p>You can test the GraphQL subscription in the AWS AppSync console. To open the console, run <code>amplify api console</code>, select <code>GrapgQL</code> and copy the following mutation to <code>upVote</code>:</p>
+<pre><code class="graphql">mutation UpVote {
+  upVote(id: &quot;688d4bc7-500f-4a68-9f11-4d34af05ca6a&quot;) {
+    id
+  }
+}
+</code></pre>
+
+<p>Open another tab and copy the following subscription into the GraphiQL editor:</p>
+<pre><code class="graphql">mutation MyMutation {
+  upVote(id: &quot;688d4bc7-500f-4a68-9f11-4d34af05ca6a&quot;) {
+    id
+  }
+}
+</code></pre>
+
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Don't have any other queries/mutations in the GraphiQL editor while testing for subscriptions. Always run the subscriptions in a different editor and make sure there are no other queries/mutations</p>
+</div>
+<p>Running the <code>upVote</code> mutation will see a subscription result on the second tab</p>
+<h2 id="integrating-the-graphql-api-with-the-ui-code">Integrating the GraphQL API with the UI code</h2>
+<p>Copy the code under <code>src</code>, <code>public</code> folders and <code>package.json</code>, <code>postcss.config.json</code> and <code>tailwind.js</code> from the GitHub repo files into your <code>src</code> folder. To setup the UI project and get it up and running, run the following commands: </p>
+<ol>
+<li><code>npm install</code> to install all the dependencies</li>
+<li><code>npm start</code> to start the project. The code will run on port <code>3000</code> and will you automatically be redirected to the web page. If not, hit <code>localhost:3000</code> on your browser</li>
+</ol>
+<p>The home page automatically lists 5 polls that have been created sorted in ascending order. Clicking on "Create New Poll" will create a new poll along with its candidates </p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Please be noted that the UI uses the local AppSync APIs and not the deployed ones and hence shares the same mock DB that was used for mocking and testing. </p>
+</div>
+<h3 id="create-a-new-poll">Create a new poll</h3>
+<p>You can now create a poll from the UI and provide two candidates, the candidates will automatically be initiased with 0 upvotes. Open the same poll link in another tab and start upvoting a candidate there and see the true magic of real time in the first tab, where the upvotes will start reflecting!! </p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>You have successfully created a real time polling application that can be used to create, and share polls and see the results in real time!</p>
+</div>
+<h2 id="polls-with-image-candidates">Polls with image candidates</h2>
+<p>The poll type that we created had a type field which included two types - <code>text</code> and <code>image</code>. In the image type of polls, the end user can upload images as the candidates instead of just textual options. To do so, you will need to upload the images on to AWS and what better service than S3 to do so. </p>
+<p>To add storage to your application, run the following command:</p>
+<pre><code>amplify add storage
+</code></pre>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Adding storage requires </p>
+</div>
+<p>and enter the following when prompted:</p>
+<pre><code>? Please select from one of the below mentioned services:
+    `Content (Images, audio, video, etc.)`
+? You need to add auth (Amazon Cognito) to your project in order to add storage for user files. Do you want to add auth now?
+    `Yes`
+? Do you want to use the default authentication and security configuration?
+    `Default configuration`
+? How do you want users to be able to sign in?
+    `Username`
+? Do you want to configure advanced settings?
+    `No, I am done.`
+? Please provide a friendly name for your resource that will be used to label this category in the project:
+    `PollImages`
+? Please provide bucket name:
+    `storagebucketname`
+? Who should have access:
+    `Auth and guest users`
+? What kind of access do you want for Authenticated users?
+    `create/update, read, delete`
+? What kind of access do you want for Guest users?
+    `create/update, read, delete`
+? Do you want to add a Lambda Trigger for your S3 Bucket?
+    `No`
+</code></pre>
+
+<p>To push the changes to the cloud, run the command: </p>
+<pre><code>amplify push
+</code></pre>
+
+<p>Once the update is complete, you will have an S3 bucket provisioned and the same will reflect as a folder <code>storage</code> in the project structure.</p>
+<p>Now, you will be able to upload images from the application. The react code that you copied from the GitHub repo into the <code>src</code> folder already has image uploads configured</p>
+<h2 id="hosting-your-application">Hosting your application</h2>
+<p>Now that you have built both the backend and the frontend, its time to show it to the world!</p>
+<h3 id="add-app-hosting">Add app hosting</h3>
+<p>To add hosting to your application, run the following command:</p>
+<pre><code>amplify add hosting
+</code></pre>
+
+<p>This adds the hosting resources to the backend. The command will first prompt for environment selection, either DEV or PROD. Upon completion, the CloudFormation template for the resources is placed in the amplify/backend/hosting directory.</p>
+<pre><code>? Select the plugin module to execute Hosting with Amplify Console (Managed hosting with custom domains, Continuous deployment)
+? Choose a type Continuous deployment (Git-based deployments)
+? Continuous deployment is configured in the Amplify Console. Please hit enter once you connect your repository 
+</code></pre>
+
+<p>You will directed to the AWS Amplify console where you will have to connect your git repo to Amplify. Once the connection is established, your frontend code will start getting deployed. This may take a few minutes to complete. This will automatically deploy the code by fetching it from the Git source control connected.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The <code>amplify push</code> command pushes the latest backend changes to the cloud, and to a similar thing for the frontend code manually, you can execute the command: <code>amplify publish</code></p>
+</div>
+<p>With your latest configuration, every git push will trigger a deployment and we can see the changes live and you can achieve the true power of CICD</p>
+<h3 id="adding-redirects">Adding redirects</h3>
+<p>Configure the redirection rules in the Amplify console, execute the command:</p>
+<pre><code>amplify configure hosting
+</code></pre>
+
+<p>This will open the Amplify console. Under the <code>App Settings</code>, select <code>Rewrites and redirects</code> section and add a new "rewrites" with the following values:</p>
+<pre><code>Source Address: &lt;/^[^.]+$|\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|ttf)$)([^.]+$)/&gt;
+Target Adress: index.js
+</code></pre>
+
+<p>The above will configure any sub path via the <code>index.js</code> file</p>
+<h2 id="destroy-the-app">Destroy the App</h2>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+</div>
+<p>Although, the entire application uses services that have free tier, it is advisable to destroy the stack if not being consumed and to do so, run the following command:</p>
+<pre><code>amplify destroy
+</code></pre>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+        
+          <a href="resources/" title="Resources" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Resources
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/SrushithR" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/SrushithR" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://www.linkedin.com/in/srushith/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: ".",
+          features: [],
+          search: Object.assign({
+            worker: "assets/javascripts/worker/search.a68abb33.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
