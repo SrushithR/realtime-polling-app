@@ -332,7 +332,7 @@ type Subscription {
 }
 ```
 
-Amplify automatically enables pagination, filtering capability for the get and list queries. You can understand more about the resolver mapping template utility reference (`$util`) [here] (https://docs.aws.amazon.com/appsync/latest/devguide/resolver-util-reference.html) 
+Amplify automatically enables pagination, filtering capability for the get and list queries. You can understand more about the resolver mapping template utility reference (`$util`) [here](https://docs.aws.amazon.com/appsync/latest/devguide/resolver-util-reference.html) 
 
 ## Understanding auto generated resolvers
 
