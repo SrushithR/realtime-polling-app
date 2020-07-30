@@ -886,6 +886,6 @@ The above will configure any sub path via the `index.js` file
 Although, the entire application uses services that have free tier, it is advisable to destroy the stack if not being consumed and to do so, run the following command:
 
 ```
-amplify destroy
+amplify delete
 ```
 
