@@ -769,7 +769,14 @@ Running the `upVote` mutation will see a subscription result on the second tab
 
 ## Integrating the GraphQL API with the UI code
 
-Copy the code under `src`, `public` folders and `package.json`, `postcss.config.json` and `tailwind.js` from the GitHub repo files into your `src` folder. To setup the UI project and get it up and running, run the following commands: 
+Copy the following folders from this [git repo](https://github.com/SrushithR/realtime-polling-app) into your project folder:
+1. `src`
+2. `public`
+3.  `package.json`
+4.  `postcss.config.json`
+5.  `tailwind.js`
+
+To setup the UI project and get it up and running, run the following commands: 
 
 1. `npm install` to install all the dependencies
 2. `npm start` to start the project. The code will run on port `3000` and will you automatically be redirected to the web page. If not, hit `localhost:3000` on your browser
