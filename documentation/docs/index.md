@@ -770,8 +770,8 @@ Running the `upVote` mutation will see a subscription result on the second tab
 ## Integrating the GraphQL API with the UI code
 
 Copy the following folders from this [git repo](https://github.com/SrushithR/realtime-polling-app) into your project folder:
-1. `src`
-2. `public`
+1.  `src`
+2.  `public`
 3.  `package.json`
 4.  `postcss.config.json`
 5.  `tailwind.js`
@@ -782,9 +782,6 @@ To setup the UI project and get it up and running, run the following commands:
 2. `npm start` to start the project. The code will run on port `3000` and will you automatically be redirected to the web page. If not, hit `localhost:3000` on your browser
 
 The home page automatically lists 5 polls that have been created sorted in ascending order. Clicking on "Create New Poll" will create a new poll along with its candidates 
-
-!!! info
-    Please be noted that the UI uses the local AppSync APIs and not the deployed ones and hence shares the same mock DB that was used for mocking and testing. 
 
 ### Create a new poll
 
@@ -858,34 +855,12 @@ amplify add hosting
 This adds the hosting resources to the backend. The command will first prompt for environment selection, either DEV or PROD. Upon completion, the CloudFormation template for the resources is placed in the amplify/backend/hosting directory.
 
 ```
-? Select the plugin module to execute Hosting with Amplify Console (Managed hosting with custom domains, Continuous deployment)
+? Hosting with Amplify Console (Managed hosting with custom domains, Continuous deployment)
 ? Choose a type Continuous deployment (Git-based deployments)
-? Continuous deployment is configured in the Amplify Console. Please hit enter once you connect your repository 
+? Continuous deployment is configured in the Amplify Console. Please hit enter once you connect your repository
 ```
-You will directed to the AWS Amplify console where you will have to connect your git repo to Amplify. Once the connection is established, your frontend code will start getting deployed. This may take a few minutes to complete. This will automatically deploy the code by fetching it from the Git source control connected.
+The second option will deploy your frontend code to an S3 bucket and automatically configure web hosting for you!
  
-!!! tip 
-    The `amplify push` command pushes the latest backend changes to the cloud, and to a similar thing for the frontend code manually, you can execute the command: `amplify publish`
-
-With your latest configuration, every git push will trigger a deployment and we can see the changes live and you can achieve the true power of CICD
-
-### Adding redirects
-
-Configure the redirection rules in the Amplify console, execute the command:
-
-```
-amplify configure hosting
-```
-
-This will open the Amplify console. Under the `App Settings`, select `Rewrites and redirects` section and add a new "rewrites" with the following values:
-
-```
-Source Address: </^[^.]+$|\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|ttf)$)([^.]+$)/>
-Target Adress: index.js
-```
-
-The above will configure any sub path via the `index.js` file
-
 ## Destroy the App
 
 !!! danger
