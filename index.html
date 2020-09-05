@@ -1316,7 +1316,7 @@ AppSync Mock endpoint is running at http://192.168.1.9:20002
 </div>
 <p>Running the <code>upVote</code> mutation will see a subscription result on the second tab</p>
 <h2 id="integrating-the-graphql-api-with-the-ui-code">Integrating the GraphQL API with the UI code</h2>
-<p>Copy the code under <code>src</code>, <code>public</code> folders and <code>package.json</code>, <code>postcss.config.json</code> and <code>tailwind.js</code> from the GitHub repo files into your <code>src</code> folder. To setup the UI project and get it up and running, run the following commands: </p>
+<p>Copy the code under <code>src</code>, <code>public</code> folders and <code>package.json</code>, <code>postcss.config.json</code> and <code>tailwind.js</code> from the GitHub repo files into your project folder. To setup the UI project and get it up and running, run the following commands: </p>
 <ol>
 <li><code>npm install</code> to install all the dependencies</li>
 <li><code>npm start</code> to start the project. The code will run on port <code>3000</code> and will you automatically be redirected to the web page. If not, hit <code>localhost:3000</code> on your browser</li>
@@ -1408,7 +1408,7 @@ Target Adress: index.js
 <p class="admonition-title">Danger</p>
 </div>
 <p>Although, the entire application uses services that have free tier, it is advisable to destroy the stack if not being consumed and to do so, run the following command:</p>
-<pre><code>amplify destroy
+<pre><code>amplify delete
 </code></pre>
                 
               
