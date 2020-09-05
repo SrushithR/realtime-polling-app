@@ -365,13 +365,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#adding-redirects" class="md-nav__link">
-    Adding redirects
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -595,13 +588,6 @@
           <li class="md-nav__item">
   <a href="#add-app-hosting" class="md-nav__link">
     Add app hosting
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#adding-redirects" class="md-nav__link">
-    Adding redirects
   </a>
   
 </li>
@@ -1328,10 +1314,6 @@ AppSync Mock endpoint is running at http://192.168.1.9:20002
 <li><code>npm start</code> to start the project. The code will run on port <code>3000</code> and will you automatically be redirected to the web page. If not, hit <code>localhost:3000</code> on your browser</li>
 </ol>
 <p>The home page automatically lists 5 polls that have been created sorted in ascending order. Clicking on "Create New Poll" will create a new poll along with its candidates </p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>Please be noted that the UI uses the local AppSync APIs and not the deployed ones and hence shares the same mock DB that was used for mocking and testing. </p>
-</div>
 <h3 id="create-a-new-poll">Create a new poll</h3>
 <p>You can now create a poll from the UI and provide two candidates, the candidates will automatically be initiased with 0 upvotes. Open the same poll link in another tab and start upvoting a candidate there and see the true magic of real time in the first tab, where the upvotes will start reflecting!! </p>
 <div class="admonition success">
@@ -1387,28 +1369,12 @@ AppSync Mock endpoint is running at http://192.168.1.9:20002
 </code></pre>
 
 <p>This adds the hosting resources to the backend. The command will first prompt for environment selection, either DEV or PROD. Upon completion, the CloudFormation template for the resources is placed in the amplify/backend/hosting directory.</p>
-<pre><code>? Select the plugin module to execute Hosting with Amplify Console (Managed hosting with custom domains, Continuous deployment)
+<pre><code>? Hosting with Amplify Console (Managed hosting with custom domains, Continuous deployment)
 ? Choose a type Continuous deployment (Git-based deployments)
-? Continuous deployment is configured in the Amplify Console. Please hit enter once you connect your repository 
+? Continuous deployment is configured in the Amplify Console. Please hit enter once you connect your repository
 </code></pre>
 
-<p>You will directed to the AWS Amplify console where you will have to connect your git repo to Amplify. Once the connection is established, your frontend code will start getting deployed. This may take a few minutes to complete. This will automatically deploy the code by fetching it from the Git source control connected.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>The <code>amplify push</code> command pushes the latest backend changes to the cloud, and to a similar thing for the frontend code manually, you can execute the command: <code>amplify publish</code></p>
-</div>
-<p>With your latest configuration, every git push will trigger a deployment and we can see the changes live and you can achieve the true power of CICD</p>
-<h3 id="adding-redirects">Adding redirects</h3>
-<p>Configure the redirection rules in the Amplify console, execute the command:</p>
-<pre><code>amplify configure hosting
-</code></pre>
-
-<p>This will open the Amplify console. Under the <code>App Settings</code>, select <code>Rewrites and redirects</code> section and add a new "rewrites" with the following values:</p>
-<pre><code>Source Address: &lt;/^[^.]+$|\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|ttf)$)([^.]+$)/&gt;
-Target Adress: index.js
-</code></pre>
-
-<p>The above will configure any sub path via the <code>index.js</code> file</p>
+<p>The second option will deploy your frontend code to an S3 bucket and automatically configure web hosting for you!</p>
 <h2 id="destroy-the-app">Destroy the App</h2>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
