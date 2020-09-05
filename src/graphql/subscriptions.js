@@ -15,21 +15,11 @@ export const onCreatePoll = /* GraphQL */ `
       id
       name
       type
-      itemType
       candidates {
-        items {
-          id
-          pollCandidatesId
-          image
-          name
-          upvotes
-          createdAt
-          updatedAt
-        }
         nextToken
       }
+      itemType
       createdAt
-      updatedAt
     }
   }
 `;
@@ -39,21 +29,11 @@ export const onUpdatePoll = /* GraphQL */ `
       id
       name
       type
-      itemType
       candidates {
-        items {
-          id
-          pollCandidatesId
-          image
-          name
-          upvotes
-          createdAt
-          updatedAt
-        }
         nextToken
       }
+      itemType
       createdAt
-      updatedAt
     }
   }
 `;
@@ -63,21 +43,11 @@ export const onDeletePoll = /* GraphQL */ `
       id
       name
       type
-      itemType
       candidates {
-        items {
-          id
-          pollCandidatesId
-          image
-          name
-          upvotes
-          createdAt
-          updatedAt
-        }
         nextToken
       }
+      itemType
       createdAt
-      updatedAt
     }
   }
 `;
@@ -89,8 +59,6 @@ export const onCreateCandidate = /* GraphQL */ `
       image
       name
       upvotes
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -102,8 +70,6 @@ export const onUpdateCandidate = /* GraphQL */ `
       image
       name
       upvotes
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -115,8 +81,6 @@ export const onDeleteCandidate = /* GraphQL */ `
       image
       name
       upvotes
-      createdAt
-      updatedAt
     }
   }
 `;

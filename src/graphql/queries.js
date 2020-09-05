@@ -7,21 +7,11 @@ export const getPoll = /* GraphQL */ `
       id
       name
       type
-      itemType
       candidates {
-        items {
-          id
-          pollCandidatesId
-          image
-          name
-          upvotes
-          createdAt
-          updatedAt
-        }
         nextToken
       }
+      itemType
       createdAt
-      updatedAt
     }
   }
 `;
@@ -37,11 +27,7 @@ export const listPolls = /* GraphQL */ `
         name
         type
         itemType
-        candidates {
-          nextToken
-        }
         createdAt
-        updatedAt
       }
       nextToken
     }
@@ -55,8 +41,6 @@ export const getCandidate = /* GraphQL */ `
       image
       name
       upvotes
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -73,8 +57,6 @@ export const listCandidates = /* GraphQL */ `
         image
         name
         upvotes
-        createdAt
-        updatedAt
       }
       nextToken
     }
@@ -102,11 +84,7 @@ export const itemsByType = /* GraphQL */ `
         name
         type
         itemType
-        candidates {
-          nextToken
-        }
         createdAt
-        updatedAt
       }
       nextToken
     }
