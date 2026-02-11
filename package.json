@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@aws-amplify/api": "^3.1.9",
+    "@aws-amplify/api": "^6.3.24",
     "@aws-amplify/auth": "^3.2.7",
     "@aws-amplify/core": "^3.2.6",
-    "@aws-amplify/storage": "^3.2.0",
+    "@aws-amplify/storage": "^6.13.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
